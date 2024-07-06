@@ -5,7 +5,7 @@ import csv
 import requests
 from tensorflow.keras.models import load_model
 
-model = load_model('birdclassifier95.keras')
+model = load_model('models/birdclassifier95.keras')
 
 detections = []
 start_time = time.time()
