@@ -46,6 +46,9 @@ bird-species-detection/<br>
 * Matplotlib
 * Scikit Learn
 * OS
+* Libraries for ESP32 Cam:
+    * http://arduino.esp8266.com/stable/package_esp8266com_index.json (for esp32 cam)
+    * https://dl.espressif.com/dl/package_esp32_index.json (for esp32 cam)
 
 ### Dataset
 1. Download the dataset from Kaggle: [Kaggle Dataset Link](https://www.kaggle.com/datasets/ichhadhari/indian-birds)
@@ -72,14 +75,19 @@ To use the pre-trained model:
     ```
 
 #### ESP32 Implementation
-* Ensure you have the required dependencies installed.
 * Setup the ESP32 cam module (using 'esp32_cam-setup' directory and Arduino IDE)
+* Ensure the libraries for esp32 are imported to IDE
+* Modify the Wi-fi credentials in 'esp-cam-setup.ino' file as needed
+* Upload 'esp-cam-setup.ino' to esp32 cam from computer
+* Once the connection with wifi is sucessful, get the link for esp32 cam stream from serial monitor
+* Modify the link (line 35 in the python script 'detect_with_esp32.py' : url = 'http://192.168.17.149/cam-mid.jpg')
 * Navigate to the `src` directory.
 * Run the following command:
     ```bash
     python detect_with_esp32.py
     ```
 
-## Acknowledgements
+## Resources and Acknowledgements
 * Dataset: [Kaggle Dataset](https://www.kaggle.com/datasets/ichhadhari/indian-birds)
-* 
+* CNN Model Training: [Youtube](https://www.youtube.com/watch?v=jztwpsIzEGc)
+* ESP32 Cam Setup: [Youtube](https://www.youtube.com/watch?v=A1SPJSVra9I&t=305s) 
