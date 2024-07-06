@@ -6,24 +6,24 @@ This project aims to detect bird species using a Convolutional Neural Network (C
 2. Using an ESP32 camera as a source
 
 ## Project Structure
-bird-species-detection/
+bird-species-detection/<br>
+│<br>
+├── model_training/<br>
+│   ├── train/<br>
+│   ├── test/<br>
+│   ├── val/<br>
+│   ├── train_model.ipynb<br>
 │
-├── model_training/
-│   ├── train/
-│   ├── test/
-│   ├── val/
-│   ├── train_model.ipynb
-│
-├── src/
-│   ├── models/
-│   │   ├── birdclassifier95.keras (to be downloaded, see instructions below)
-│   ├── bird_detections_webcam.csv
-│   ├── bird_detections_esp.csv
-│   ├── detect_with_webcam.py
-│   ├── detect_with_esp32.py
-│
-├── README.md
-├── LICENSE
+├── src/<br>
+│   ├── models/<br>
+│   │   ├── birdclassifier95.keras (to be downloaded, see instructions below)<br>
+│   ├── bird_detections_webcam.csv<br>
+│   ├── bird_detections_esp.csv<br>
+│   ├── detect_with_webcam.py<br>
+│   ├── detect_with_esp32.py<br>
+│<br>
+├── README.md<br>
+├── LICENSE<br>
 
 ## Instructions
 
