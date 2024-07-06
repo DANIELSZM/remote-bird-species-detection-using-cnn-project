@@ -4,7 +4,7 @@ import time
 import csv
 
 from tensorflow.keras.models import load_model
-model = load_model('birdclassifier95.keras')
+model = load_model('models/birdclassifier95.keras')
 
 detections = []
 start_time = time.time()
@@ -23,7 +23,7 @@ def predict_class(frame):
     return predicted_class_index
 
 def save_to_csv(detections):
-    with open('bird_detections.csv', mode='a', newline='') as file:
+    with open('bird_detected_webcam.csv', mode='a', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(['Timestamp', 'Detected Bird'])
         for detection in detections:
