@@ -9,9 +9,9 @@ This project aims to detect bird species using a Convolutional Neural Network (C
 bird-species-detection/<br>
 │<br>
 ├── model_training/<br>
-│   ├── train/<br>
-│   ├── test/<br>
-│   ├── val/<br>
+│   ├── train/ (to be downloaded from kaggle, link below)<br>
+│   ├── test/ (to be downloaded from kaggle, link below)<br>
+│   ├── val/ (to be downloaded from kaggle, link below)<br>
 │   ├── train_model.ipynb<br>
 │<br>
 ├── src/<br>
