@@ -13,7 +13,7 @@ bird-species-detection/<br>
 │   ├── test/<br>
 │   ├── val/<br>
 │   ├── train_model.ipynb<br>
-│
+│<br>
 ├── src/<br>
 │   ├── models/<br>
 │   │   ├── birdclassifier95.keras (to be downloaded, see instructions below)<br>
@@ -28,7 +28,7 @@ bird-species-detection/<br>
 ## Instructions
 
 ### Dataset
-1. Download the dataset from Kaggle: [Kaggle Dataset Link](https://www.kaggle.com/link-to-dataset)
+1. Download the dataset from Kaggle: [Kaggle Dataset Link](https://www.kaggle.com/datasets/ichhadhari/indian-birds)
 2. Place the downloaded images into the respective folders (`train`, `test`, `val`) inside the `model_training` directory. This allows you to run the Jupyter notebook with the dataset.
 
 ### Model Training
@@ -38,7 +38,7 @@ bird-species-detection/<br>
 
 ### Pre-trained Model
 To use the pre-trained model:
-1. Download the pre-trained model from Google Drive: [Download birdclassifier95.keras](https://drive.google.com/link-to-your-file)
+1. Download the pre-trained model from Google Drive: [Download birdclassifier95.keras](https://drive.google.com/drive/folders/1w_qjfUGJaqZOIcuMml_xZSaMRJ4kt5TX?usp=sharing)
 2. Place the downloaded model file in the `models` folder inside the `src` directory.
 
 ### Usage
