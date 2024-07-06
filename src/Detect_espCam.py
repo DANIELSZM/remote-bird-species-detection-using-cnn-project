@@ -26,7 +26,7 @@ def predict_class(frame):
     return predicted_class_index
 
 def save_to_csv(detections):
-    with open('bird_detections.csv', mode='a', newline='') as file:
+    with open('bird_detected_esp.csv', mode='a', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(['Timestamp', 'Detected Bird'])
         for detection in detections:
