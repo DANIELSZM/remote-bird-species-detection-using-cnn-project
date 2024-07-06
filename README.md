@@ -27,6 +27,19 @@ bird-species-detection/<br>
 
 ## Instructions
 
+### Requirements (Libraries)
+
+* Python 3.x
+* TensorFlow
+* OpenCV
+* Numpy
+* Time
+* CSV
+* Requests
+* Matplotlib
+* Scikit Learn
+* OS
+
 ### Dataset
 1. Download the dataset from Kaggle: [Kaggle Dataset Link](https://www.kaggle.com/datasets/ichhadhari/indian-birds)
 2. Place the downloaded images into the respective folders (`train`, `test`, `val`) inside the `model_training` directory. This allows you to run the Jupyter notebook with the dataset.
