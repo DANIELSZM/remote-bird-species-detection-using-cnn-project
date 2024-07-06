@@ -47,8 +47,8 @@ bird-species-detection/<br>
 * Scikit Learn
 * OS
 * Libraries for ESP32 Cam:
-    * http://arduino.esp8266.com/stable/package_esp8266com_index.json (for esp32 cam)
-    * https://dl.espressif.com/dl/package_esp32_index.json (for esp32 cam)
+    * http://arduino.esp8266.com/stable/package_esp8266com_index.json
+    * https://dl.espressif.com/dl/package_esp32_index.json 
 
 ### Dataset
 1. Download the dataset from Kaggle: [Kaggle Dataset Link](https://www.kaggle.com/datasets/ichhadhari/indian-birds)
