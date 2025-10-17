@@ -10,11 +10,9 @@ from datetime import datetime
 import io
 import os
 
-# === CONFIGURACIÓN ===
-CAM_URL = "http://192.168.137.103/cam.jpg"  # cambia a la IP real de tu ESP32S3
-INTERVAL = 3  # segundos entre capturas
+CAM_URL = "http://192.168.137.103/cam.jpg"  # change to the real IP of the ESP32S3
+INTERVAL = 3  # seconds per capture
 
-# === INICIALIZAR MODELO ===
 model = load_model('models/birdclassifier95_3.keras')
 class_names = [
     'Asian-Green-Bee-Eater',
@@ -25,27 +23,24 @@ class_names = [
     'White-Breasted-Kingfisher'
 ]
 
-# === VARIABLES GLOBALES ===
 last_image = None
 last_prediction = "Esperando datos..."
 detections = []
 
 app = Flask(__name__, static_folder="static", template_folder="templates")
 
-# === PREPROCESAMIENTO ===
 def preprocess_frame(frame):
     resized_frame = cv2.resize(frame, (256, 256))
     rgb_frame = cv2.cvtColor(resized_frame, cv2.COLOR_BGR2RGB)
     return rgb_frame
 
-# === CLASIFICACIÓN ===
+# -- CLASIFICATION --
 def predict_class(frame):
     processed = preprocess_frame(frame)
     predictions = model.predict(np.expand_dims(processed, axis=0))
     predicted_index = np.argmax(predictions)
     return class_names[predicted_index]
 
-# === HILO DE CAPTURA ===
 def capture_loop():
     global last_image, last_prediction, detections
     while True:
@@ -53,7 +48,7 @@ def capture_loop():
             response = requests.get(CAM_URL, timeout=3)
             image = cv2.imdecode(np.asarray(bytearray(response.content)), 1)
             if image is None:
-                print("⚠️ Error: imagen vacía")
+                print("Error: empty image")
                 time.sleep(INTERVAL)
                 continue
 
@@ -65,7 +60,8 @@ def capture_loop():
             detections.append([timestamp, prediction])
             print(f"[{timestamp}] {prediction}")
 
-            # Guardar en CSV
+            # Save to csv - delete if you want
+            # ------------------------------------------
             if not os.path.exists('bird_detected_esp.csv'):
                 with open('bird_detected_esp.csv', 'w', newline='') as file:
                     writer = csv.writer(file)
@@ -74,16 +70,17 @@ def capture_loop():
             with open('bird_detected_esp.csv', mode='a', newline='') as file:
                 writer = csv.writer(file)
                 writer.writerow([timestamp, prediction])
+            #--------------------------------------------
 
         except Exception as e:
-            print("❌ Error capturando:", e)
+            print("Error:", e)
 
         time.sleep(INTERVAL)
 
-# === RUTAS API ===
+# -- API ROUTES --
 @app.route("/api/latest", methods=["GET"])
 def get_latest():
-    """Devuelve la última predicción y timestamp"""
+    """Returns the last prediction and timestamp"""
     if last_image is None:
         return jsonify({"status": "waiting for data"}), 202
     return jsonify({
@@ -93,7 +90,7 @@ def get_latest():
 
 @app.route("/api/latest_image", methods=["GET"])
 def get_latest_image():
-    """Devuelve la última imagen en formato JPEG"""
+    """Returns the last image in JPEG format"""
     global last_image
     if last_image is None:
         return jsonify({"error": "no image yet"}), 404
@@ -106,15 +103,13 @@ def get_latest_image():
         download_name='latest.jpg'
     )
 
-# === FRONTEND ===
+# -- TO RUN HTML TOO --
 @app.route("/")
 def index():
     return render_template("index.html")
 
-# === MAIN ===
 if __name__ == "__main__":
-    # Lanzar el hilo de captura
     threading.Thread(target=capture_loop, daemon=True).start()
 
-    print("🚀 Servidor iniciado en: http://localhost:5000")
+    print("Server on: http://localhost:5000")
     app.run(host="0.0.0.0", port=5000, debug=True)
